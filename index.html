@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f6fc">
+  <meta name="description" content="Catat arahan Madam, susun langkah blasting dan compile flow untuk rujukan operasi.">
+  <title>ADDAR · Flow Blasting</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <header class="brand"><div class="brand-icon" aria-hidden="true">✳</div><div><strong>ADDAR</strong><span>Sales Operations</span></div></header>
+      <div class="side-content">
+        <button class="button primary new-flow" id="new-flow"><b aria-hidden="true">+</b> Flow baru</button>
+        <div class="side-label"><h2>Flow saya</h2><span id="flow-count"></span></div>
+        <div id="flow-list"></div>
+      </div>
+      <footer class="side-footer"><span aria-hidden="true">◉</span><div><strong>Simpanan peranti</strong><br>Flow disimpan dalam pelayar ini.</div></footer>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><span>Operasi jualan <span class="divider">/</span> <strong>Flow Blasting</strong></span><span id="save-state" role="status"></span></header>
+      <main>
+        <div class="intro"><div><h1>Flow Blasting</h1><p>Catat arahan Madam, susun langkah dan compile untuk setup blasting.</p></div></div>
+        <div class="columns">
+          <section class="editor" aria-label="Editor flow">
+            <section class="card details">
+              <div class="section-head"><div class="section-icon" aria-hidden="true">▤</div><div><h2>Butiran kempen</h2><p>Rekod arahan asal dan audiens untuk flow ini.</p></div></div>
+              <div class="field"><label for="title">Nama flow</label><input id="title" data-field="title" placeholder="Contoh: Payday VIP Silver"></div>
+              <div class="fields">
+                <div class="field"><label for="channel">Platform</label><select id="channel" data-field="channel"><option>WhatsApp</option><option>SleekFlow</option><option>ChatkuAI</option><option>Lain-lain</option></select></div>
+                <div class="field"><label for="audience">Segmen pelanggan</label><input id="audience" data-field="audience" placeholder="Contoh: VIP Silver aktif"></div>
+              </div>
+              <div class="field"><label for="brief">Arahan Madam</label><textarea id="brief" data-field="brief" rows="3" placeholder="Paste arahan asal Madam di sini…"></textarea></div>
+            </section>
+            <section class="steps-section" aria-labelledby="steps-title">
+              <div class="steps-head"><div><h2 id="steps-title">Langkah flow <span id="step-count"></span></h2><p>Susun mengikut turutan pelaksanaan.</p></div><button class="button outline" id="add-step"><b aria-hidden="true">+</b> Tambah langkah</button></div>
+              <div id="steps"></div>
+            </section>
+            <details class="manage">
+              <summary>Urus flow</summary>
+              <div class="manage-actions">
+                <button class="button outline" id="duplicate">Duplikasi flow</button><button class="button danger" id="delete-flow">Padam flow</button>
+              </div>
+            </details>
+          </section>
+          <aside class="preview" aria-labelledby="preview-title">
+            <div class="card preview-card">
+              <div class="preview-head"><div class="section-icon" aria-hidden="true">≡</div><div><h2 id="preview-title">Flow dikompil</h2><p>Dikemas kini semasa anda menaip.</p></div></div>
+              <div id="preview-content"></div>
+              <div class="preview-actions"><button class="button primary" id="copy">Salin flow</button><button class="button outline" id="download">Muat turun TXT</button></div>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+  <template id="step-template">
+    <details class="card step">
+      <summary><span class="step-number"></span><span class="step-heading"><strong class="step-title"></strong><small class="step-meta"></small></span></summary>
+      <div class="step-body">
+        <div class="field"><label data-label="name">Nama langkah</label><input data-step="name" placeholder="Contoh: Hantar mesej pembukaan"></div>
+        <div class="fields">
+          <div class="field"><label data-label="timing">Masa atau sela</label><input data-step="timing" placeholder="Contoh: 10 pagi atau selepas 24 jam"></div>
+          <div class="field"><label data-label="condition">Syarat atau cabang</label><input data-step="condition" placeholder="Contoh: Jika pelanggan belum balas"></div>
+        </div>
+        <div class="field"><label data-label="action">Tindakan</label><textarea data-step="action" rows="2" placeholder="Contoh: Assign kepada PIC jika pelanggan berminat"></textarea></div>
+        <div class="field"><label data-label="message">Teks mesej</label><textarea data-step="message" rows="3" placeholder="Tulis skrip mesej jika langkah ini melibatkan penghantaran…"></textarea></div>
+        <div class="step-actions"><button class="button outline" data-move="-1">Naik</button><button class="button outline" data-move="1">Turun</button><button class="button danger" data-delete-step>Padam langkah</button></div>
+      </div>
+    </details>
+  </template>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>
